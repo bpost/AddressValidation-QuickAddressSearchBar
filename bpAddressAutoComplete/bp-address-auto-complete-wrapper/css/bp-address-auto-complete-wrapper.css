@@ -1,0 +1,13 @@
+.bpaac-dropdown-validation{
+	line-height: 20px;
+	min-height : 20px;
+}
+
+.bpaac-validated-icon{
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAxklEQVR4nI3QP0vCURTG8Y++B8GGnFobJGiRQNzc2hvcnXsJDc3OEbS49hpaGpx1EhQJGoQaLKjI/gydC9cfP6UHznDP+T7cc56KTVVxgBoeMbdDfSzwk9UYp2XwdQEs1nkOn+0Al1jhC81kuI/hdwGeooGjeF8lwwvecYIe1phgL+aXYRglwzIMrXh3/aVUwSD78S4ZbqPxik70qrFCvuJFMhzjM5pvEcKwAD+hnifVw8eWpJ7RVqJD3OAhbprFDftl8L/1C3gjSNJmHs5CAAAAAElFTkSuQmCC')
+	no-repeat;
+	background-size: 14px 14px;
+	display: inline-block;
+    width: 14px;
+    height: 14px;
+}

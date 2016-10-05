@@ -1,0 +1,22 @@
+{
+  "name": "bp-address-auto-complete",
+  "version": "0.0.0",
+  "main": "dist/bp-address-auto-complete.js",
+  "ignore": [
+    "app",
+    "out",
+    "node_modules",
+    "bower_components",
+    "Gruntfile.js",
+    "package.json",
+    "eslint.json",
+    ".jshintrc",
+    ".editorconfig",
+    ".tmp"
+  ],
+  "dependencies": {
+    "angular": "",
+    "angular-sanitize": ""
+  },
+  "devDependencies": {}
+}

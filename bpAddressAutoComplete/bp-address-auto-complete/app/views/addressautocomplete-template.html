@@ -1,0 +1,27 @@
+<div class="bpaac-dropdown">
+	<div class="bpaac-search-bar">
+		<div class="bpaac-input-width"><input caret-control type="text" class="bpaac-input"
+													 ng-keydown="aac.checkKeyDown($event)"
+													 ng-change="aac.onInputChange()" ng-trim="false"
+													 ng-model="aac.searchText" id="addressInputField"
+													 placeholder="{{aac.placeHolderText}}" autocomplete="off" ng-blur="aac.onBlur()"
+													 ng-focus="aac.onFocus()"/>
+			<div id="bpaac-clear-button"
+				 ng-show="aac.mayShowClearButton()" ng-click="aac.clearInput(true)"
+				 class="bpaac-clear"></div>
+		</div>
+		<div ng-transclude></div>
+		<input id="bpaac-typeahead" type="text" disabled autocomplete="off" ng-model="aac.bpTypeAhead"/></div>
+	<div class="bpaac-dropdown-menu-container"><div class="bpaac-dropdown-menu" ng-show="aac.mayShowDropdown()">
+		<ul id="bpaac-suggestionsList" class="list-unstyled">
+			<li ng-repeat="suggestion in aac.suggestions"
+				ng-class="{active : selectedIndex===$index,validatedSuggestion : suggestion.isValidatedSuggestion}"
+				ng-mousedown="aac.clickSuggestion($event, suggestion)" ng-mouseleave="aac.suggestionMouseLeave()">
+				<span ng-bind-html="suggestion.string | highlightSuggestion:aac.wordList"></span> <br />
+				<span ng-repeat="translatedMessage in aac.getTranslatedMessages(suggestion)" class="bpaac-suggestion-message"
+					  ng-bind-html="translatedMessage"></span>
+			</li>
+		</ul>
+	</div></div>
+</div>
+

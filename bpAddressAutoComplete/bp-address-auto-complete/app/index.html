@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="bpAddressAutoComplete">
+<head lang="en">
+	<meta charset="UTF-8">
+	<title>Test page for bpAddressAutoComplete core</title>
+	<link rel="stylesheet" href="css/app.css"/>
+
+</head>
+<body>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="js/app.js"></script>
+<script src="js/scripts/bp-address-auto-complete.js"></script>
+<script src="js/scripts/bp-address-auto-complete-controller.js"></script>
+<script src="js/scripts/caret-control.js"></script>
+<script src="js/scripts/highlight-filter.js"></script>
+<script src="js/scripts/unicode-service.js"></script>
+<script src="js/scripts/translation-service.js"></script>
+<div bp-address-auto-complete selected-address="selectedAddress"
+	 valurl="http://webservices-dca.netpost/ws/MailingAddressProofingCSREST_v1/address/validateAddresses"
+	 aacurl="http://webservices-dca.netpost/ws/MailingAddressProofingCSREST_v1/address/autocomplete?"></div>
+</body>
+</html>
+
