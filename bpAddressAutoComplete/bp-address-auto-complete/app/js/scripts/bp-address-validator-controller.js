@@ -71,21 +71,25 @@ angular.module('bpAddressAutoComplete').controller('BpAddressValidatorController
 		if (validatedPostalAddress) {
 			var aitSuggestion = {};
 			if (validatedPostalAddress.StructuredDeliveryPointLocation) {
-				if (validatedPostalAddress.StructuredDeliveryPointLocation.hasOwnProperty('StreetName')) {
+				if (validatedPostalAddress.StructuredDeliveryPointLocation.hasOwnProperty('StreetName')
+					&& !validatedPostalAddress.StructuredDeliveryPointLocation.StreetName === "") {
 					aitSuggestion.streetName = validatedPostalAddress.StructuredDeliveryPointLocation.StreetName;
 				}
-				if (validatedPostalAddress.StructuredDeliveryPointLocation.hasOwnProperty('StreetNumber')) {
+				if (validatedPostalAddress.StructuredDeliveryPointLocation.hasOwnProperty('StreetNumber') 
+					&& !validatedPostalAddress.StructuredDeliveryPointLocation.StreetNumber === "") {
 					aitSuggestion.houseNumber = validatedPostalAddress.StructuredDeliveryPointLocation.StreetNumber;
 				}
-				if (validatedPostalAddress.StructuredDeliveryPointLocation.hasOwnProperty('BoxNumber')) {
+				if (validatedPostalAddress.StructuredDeliveryPointLocation.hasOwnProperty('BoxNumber')
+					&& !validatedPostalAddress.StructuredDeliveryPointLocation.BoxNumber === "") {
 					aitSuggestion.boxNumber = validatedPostalAddress.StructuredDeliveryPointLocation.BoxNumber;
 				}
 			}
 			if (validatedPostalAddress.StructuredPostalCodeMunicipality) {
-				if (validatedPostalAddress.StructuredPostalCodeMunicipality.hasOwnProperty('MunicipalityName')) {
+				if (validatedPostalAddress.StructuredPostalCodeMunicipality.hasOwnProperty('MunicipalityName')
+					&& !validatedPostalAddress.StructuredPostalCodeMunicipality.MunicipalityName === "" 
+					&& validatedPostalAddress.StructuredPostalCodeMunicipality.hasOwnProperty('PostalCode')
+					&& !validatedPostalAddress.StructuredPostalCodeMunicipality.PostalCode === "") {
 					aitSuggestion.municipalityName = validatedPostalAddress.StructuredPostalCodeMunicipality.MunicipalityName;
-				}
-				if (validatedPostalAddress.StructuredPostalCodeMunicipality.hasOwnProperty('PostalCode')) {
 					aitSuggestion.postalCode = validatedPostalAddress.StructuredPostalCodeMunicipality.PostalCode;
 				}
 			}

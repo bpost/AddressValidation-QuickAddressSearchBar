@@ -27,27 +27,33 @@ angular.module('bpAddressAutoComplete').controller('BpInternalValidatorControlle
 		if(validatedPostalAddress){
 			var aitSuggestion = {};
 			if(validatedPostalAddress['mpw:StructuredDeliveryPointLocation']){
-				if(validatedPostalAddress['mpw:StructuredDeliveryPointLocation'].hasOwnProperty('a3:StreetName')){
+				if(validatedPostalAddress['mpw:StructuredDeliveryPointLocation'].hasOwnProperty('a3:StreetName')
+					&& !validatedPostalAddress['mpw:StructuredDeliveryPointLocation'].StreetName === ""){
 					aitSuggestion.streetName = validatedPostalAddress['mpw:StructuredDeliveryPointLocation']['a3:StreetName']['*body'];
 				}
-				if(validatedPostalAddress['mpw:StructuredDeliveryPointLocation'].hasOwnProperty('a3:StreetNumber')){
+				if(validatedPostalAddress['mpw:StructuredDeliveryPointLocation'].hasOwnProperty('a3:StreetNumber')
+					&& !validatedPostalAddress['mpw:StructuredDeliveryPointLocation'].StreetNumber === ""){
 					aitSuggestion.houseNumber = validatedPostalAddress['mpw:StructuredDeliveryPointLocation']['a3:StreetNumber'];
 				}
-				if(validatedPostalAddress['mpw:StructuredDeliveryPointLocation'].hasOwnProperty('a3:BoxNumber')){
+				if(validatedPostalAddress['mpw:StructuredDeliveryPointLocation'].hasOwnProperty('a3:BoxNumber')
+					&& !validatedPostalAddress['mpw:StructuredDeliveryPointLocation'].BoxNumber === ""){
 					aitSuggestion.boxNumber = validatedPostalAddress['mpw:StructuredDeliveryPointLocation']['a3:BoxNumber'];
 				}
-				if(validatedPostalAddress['mpw:StructuredDeliveryPointLocation'].hasOwnProperty('a3:StreetId')){
+				if(validatedPostalAddress['mpw:StructuredDeliveryPointLocation'].hasOwnProperty('a3:StreetId')
+					&& !validatedPostalAddress['mpw:StructuredDeliveryPointLocation'].StreetId === ""){
 					aitSuggestion.streetId = validatedPostalAddress['mpw:StructuredDeliveryPointLocation']['a3:StreetId'];
 				}
 			}
 			if(validatedPostalAddress['mpw:StructuredPostalCodeMunicipality']){
-				if(validatedPostalAddress['mpw:StructuredPostalCodeMunicipality'].hasOwnProperty('a3:MunicipalityName')){
+				if(validatedPostalAddress['mpw:StructuredPostalCodeMunicipality'].hasOwnProperty('a3:MunicipalityName')
+					&& !validatedPostalAddress['mpw:StructuredDeliveryPointLocation'].MunicipalityName === ""
+					&& validatedPostalAddress['mpw:StructuredPostalCodeMunicipality'].hasOwnProperty('a3:PostalCode')
+					&& !validatedPostalAddress['mpw:StructuredDeliveryPointLocation'].PostalCode === ""){
 					aitSuggestion.municipalityName = validatedPostalAddress['mpw:StructuredPostalCodeMunicipality']['a3:MunicipalityName']['*body'];
-				}
-				if(validatedPostalAddress['mpw:StructuredPostalCodeMunicipality'].hasOwnProperty('a3:PostalCode')){
 					aitSuggestion.postalCode = validatedPostalAddress['mpw:StructuredPostalCodeMunicipality']['a3:PostalCode'];
 				}
-				if(validatedPostalAddress['mpw:StructuredPostalCodeMunicipality'].hasOwnProperty('a3:PostalAdministrativeAreaId')){
+				if(validatedPostalAddress['mpw:StructuredPostalCodeMunicipality'].hasOwnProperty('a3:PostalAdministrativeAreaId')
+					&& !validatedPostalAddress['mpw:StructuredDeliveryPointLocation'].PostalAdministrativeAreaId === ""){
 					aitSuggestion.subMunicipalityId = validatedPostalAddress['mpw:StructuredPostalCodeMunicipality']['a3:PostalAdministrativeAreaId'];
 				}
 			}
