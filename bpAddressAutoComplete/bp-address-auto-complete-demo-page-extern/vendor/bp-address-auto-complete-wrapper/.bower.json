@@ -1,0 +1,37 @@
+{
+  "name": "bp-address-auto-complete-wrapper",
+  "version": "0.0.0",
+  "authors": [
+    "Alex Wauters"
+  ],
+  "description": "Default wrapper for the bp-address-auto-complete",
+  "main": "bp-address-auto-complete-wrapper.js",
+  "keywords": [
+    "bpost",
+    "address",
+    "auto",
+    "complete",
+    "belgium"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "css/",
+    "out",
+    "src",
+    "eslint.json",
+    "Gruntfile.js",
+    "package.json"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.3.0",
+    "bp-address-auto-complete": "../bp-address-auto-complete"
+  },
+  "_source": "C:\\Projects\\ELAS\\bpAutoComplete\\bp-address-auto-complete-wrapper",
+  "_target": "*",
+  "_originalSource": "..\\bp-address-auto-complete-wrapper"
+}

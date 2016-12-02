@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html ng-app="autocompleteDemoPageExtern">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width">
+	<title>bpAddressAutoComplete demo page</title>
+
+	<!-- build:css css/ngBpostAddressAutoComplete.css -->
+	<!-- bower:css -->
+	<!-- endbower -->
+	<link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css"/>
+	<link rel="stylesheet" href="vendor/bp-address-auto-complete/dist/bp-address-auto-complete.css"/>
+	<link rel="stylesheet" href="vendor/bp-address-auto-complete-wrapper/dist/bp-address-auto-complete-wrapper.css"/>
+	<!-- endbuild -->
+</head>
+<body ng-controller="TestAddressesController" onload="displayActiveOptions">
+
+<!-- bower:js -->
+<script src="vendor/angular/angular.js"></script>
+<script src="vendor/angular-sanitize/angular-sanitize.js"></script>
+<script src="vendor/jquery/dist/jquery.js"></script>
+<script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+<script src="vendor/bp-address-auto-complete/dist/bp-address-auto-complete.js"></script>
+<script src="vendor/bp-address-auto-complete-wrapper/dist/bp-address-auto-complete-wrapper.js"></script>
+<!-- endbower -->
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/test-addresses-controller.js"></script>
+<!-- endbuild -->
+
+<div class="dropdown" align="right">
+<button class="bpaac-btn btn doc-menu btn-info dropdown-toggle-split btn-sm" type="button" id="helpbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"  style="margin-top:-15px;margin-bottom:-15px;margin-right:15px;padding-top:0px;padding-bottom:0px">Help <span class="glyphicon glyphicon-dashboard"></span>  <span class="caret"></span>
+</button>
+<ul class="dropdown-menu dropdown-menu-right bpaac-help-option help-option" id="helpddm">
+	<li><a href="http://wiki.netpost/display/ABP/bpAddressAutoComplete" id="doc1" target="_blank" >Widget </a></li>
+	<li><a href="http://wiki.netpost/display/ABP/Address+Auto+Complete" id="doc2" target="_blank" >Autocomplete </a></li>
+</ul>
+</div>
+<div class="container-fluid">
+<div class="row">
+	<div class="col-sm-5">		
+		<div class="panel-group">
+				<div class="panel-body">    
+						<bp-address-auto-complete-wrapper ng-model="selectedAddress" bp-addressparams="{{addressparams}}" url="{{aacUrl}}" min-level="{{selectedLevel}}">
+							<bp-address-validator url="{{valUrl}}"></bp-address-validator>
+						</bp-address-auto-complete-wrapper>
+
+						<br /><br />
+						<div>
+						Selected address: {{selectedAddress.string}} <br />
+						All Attributes:
+						<table><tr ng-repeat="(key, value) in selectedAddress">
+							<td> {{key}} </td> <td> {{ value }} </td>
+						</tr></table></div>
+						<br /><br />
+						<br /><div class="bpaac-btn btn btn-sm btn-primary" ng-click="clearInput()" type="button">Clear input without Focus</div> <div class="bpaac-btn btn btn-sm btn-primary" ng-click="clearInput(true)" type="button">Clear input with Focus</div>
+				</div>
+			</div>
+	</div>
+	<br/>
+	<div class="col-sm-7">	
+
+	  <div class="row" style="margin-top:-5px">
+
+		<div class="col-sm-7">		
+		<div class="panel-group">
+				<div class="panel panel-info"> 			
+					<div class="bpaac-panel-heading panel-heading">
+						<h2 class="bpaac-panel-title panel-title">Validation URLs</h2>
+					</div>
+				    <div class="panel-body">  
+						Address Validation URL:  <input type="text" disabled="disabled" value="{{valUrl}}" size="50"/> <br /><br />
+						Address Auto Complete URL: <input type="text" disabled="disabled" value="{{aacUrl}}" size="50"/><br /><br />
+					</div>		
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-5">
+			<div class="panel-group">
+				<div class="panel panel-info"> 			
+					<div class="bpaac-panel-heading panel-heading">
+						<h2 class="bpaac-panel-title panel-title">General Options</h2>
+					</div>
+				    <div class="panel-body" align="center">  
+					    <div class="row">
+				    		 <div class="col-sm-6">
+				    		 	<label for="environmentbtn" align="left" class="bpaac-lb-sm lb-sm">Environment:&nbsp;&nbsp;&nbsp;</label>
+				    		 </div>
+				    		 <div class="col-sm-6">
+								 <div class="dropdown" align="left">
+								  <button class="bpaac-btn btn environment-option btn-primary dropdown-toggle-split  btn-sm" type="button" id="environmentbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								    Environment
+								    <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+								  </button>
+								  <ul class="dropdown-menu environment-option"  id="environmentddm">
+								    <li><a href="#" id="env1" ng-click="setToAc1()">AC1 </a></li>
+								    <li><a href="#" id="env2" ng-click="setToAc2()">AC2 </a></li>
+								    <li role="separator" class="divider"></li>
+								    <li><a href="#" id="env3" ng-click="setToPr()">PR </a></li>
+								  </ul>
+								 </div>
+							 </div>
+						</div>				
+						<div class="row">
+							<div class="col-sm-6">
+				    		 	<label for="levelbtn" align="left" class="bpaac-lb-sm  lb-sm">Min. Level:</label>
+				    		</div>
+						    <div class="col-sm-6">		
+								 <div class="dropdown" align="left">
+								  <button class="bpaac-btn btn level-option btn-primary btn-sm" type="button" id="levelbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+								    Min. Level
+								     <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+								  </button>
+								  <ul class="dropdown-menu level-option" id="levelddm" > 
+								    <li><a href="#" id="level1" ng-click="setLevel(1)">Box Number </a></li>
+								    <li><a href="#" id="level2" ng-click="setLevel(2)">Street Number </a></li>
+								    <li><a href="#" id="level3" ng-click="setLevel(3)">Street </a></li>
+								    <li><a href="#" id="level4" ng-click="setLevel(4)">Municipality </a></li>
+								  </ul>
+							  	 </div>
+							 </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	 </div>
+
+	 <div class="row" style="margin-top:-12px;margin-bottom:-6px;">
+		<div class="panel-group" style="margin-bottom:-8px;margin-top:-8px;">
+			<div class="panel-body"> 	
+			    <div class="panel panel-default">
+					<div class="bpaac-panel-heading panel-heading">
+						<h3 class="bpaac-panel-title panel-title">
+						  <a data-toggle="collapse" href="#collapse1" onclick="refreshCaret()" id="collapsibleAddrPanel" class="up">Prefilled Parameters <span class="caret"></span></a> 
+						</h3>
+					</div>
+
+				    <div id="collapse1" class="panel-collapse collapse" style="border-style:ridge;border-width:thin">
+				        <div class="panel-body">
+				        <div class="container-fluid">
+				        	       	
+				        	<div class="panel-group">    
+					        	<div class="panel panel-info"> 			
+									<div class="bpaac-panel-heading panel-heading"><h4 class="bpaac-panel-title panel-title">Unstructured Address</h4></div>
+									 <div class="panel-body">   
+										<div class="row">
+										  	<div class="col-md-12">	 			        		    	
+											   <input type="text" class="bpaac-form-control  form-control input-sm" name="unstructuredAddress" id="unstructuredAddress" ng-model="unstructuredAddress" placeholder="Unstructured Address"/>
+							 				</div>
+										</div>
+										<div class="row">   
+											<div class="col-md-2 bpaac-btn btn btn-sm btn-primary" id="btnPrefillUnstructuredParams" ng-click="prefillUnstructuredParams()"> Send </div>
+											<div class="col-md-2 bpaac-btn btn btn-sm btn-warning" ng-click="clearPrefilledUnstructuredParams()"> Clear </div>
+											<div class="col-md-8"></div>
+										</div>
+									 </div>
+								 </div>
+							 </div>			        
+				 		
+							 
+							<div class="panel-group" style="margin-bottom:-8px;margin-top:-8px"">  
+					        	<div class="panel panel-info"> 			
+									<div class="bpaac-panel-heading panel-heading"><h4 class="bpaac-panel-title panel-title">Structured Address</h4></div>
+									<div class="panel-body" > 
+										<div class="row">
+											<div class="col-md-6">	 	
+										    	 <input type="text" class="bpaac-form-control form-control input-sm" name="streetName" id="streetName" ng-model="streetName" placeholder="Street Name" />
+										    </div>	
+										     <div class="col-md-3">
+										     	<input type="text" class="bpaac-form-control form-control input-sm" name="houseNumber" id="houseNumber" ng-model="houseNumber" placeholder="House Number" /> 
+										     </div>
+										     <div class="col-md-3">
+											 	<input type="text" class="bpaac-form-control form-control input-sm" name="boxNumber" id="boxNumber" ng-model="boxNumber" placeholder="Box Number" />
+											 </div>
+										</div> 			
+										<div class="row">   
+											<div class="col-md-3">
+											     <input type="text" class="bpaac-form-control form-control input-sm" name="postalCode" id="postalCode" ng-model="postalCode" placeholder="Postal code"/>    
+											</div>	
+											<div class="col-md-9">	 	
+											     <input type="text" class="bpaac-form-control form-control input-sm" name="municipalityName" id="municipalityName" ng-model="municipalityName" placeholder="Municipality"> 
+											</div>	
+										</div>
+										<div class="row">   
+											<div class="col-md-2 bpaac-btn btn btn-sm btn-primary" id="btnPrefillParams" ng-click="prefillParams()"> Send</div>
+											<div class="col-md-2 bpaac-btn btn btn-sm btn-warning" ng-click="clearPrefilledParams()">Clear</div>
+											<div class="col-md-8"></div>
+										</div>
+								   </div>
+								</div>			
+							</div>			 
+						</div>
+				        </div>
+				        <div class="panel-footer" style="padding: 6px 15px"></div>
+				    </div>
+				</div>
+		  	</div>	
+		</div>
+
+	 </div>
+
+	</div>
+
+</div>
+</div>
+
+
+
+	   <script type="text/javascript">	   		
+
+			$(function(){
+			    $(".dropdown-menu.environment-option li a").click(function(){
+			      $(".btn.environment-option:first-child").text($(this).text());
+			      $(".btn.environment-option:first-child").val($(this).text());
+			      $(".btn.environment-option").append('<span class="caret"></span>').append('<span class="sr-only">Toggle Dropdown</span>');
+			   });
+				$(".dropdown-menu.level-option li a").click(function(){
+			      $(".btn.level-option:first-child").text($(this).text());
+			      $(".btn.level-option:first-child").val($(this).text());
+			      $(".btn.level-option").append('<span class="caret"></span>').append('<span class="sr-only">Toggle Dropdown</span>');
+			   });	
+			});
+
+			window.onload=displayActiveOptions;
+	   		function displayActiveOptions(e){
+			    $('#env1').click();
+			    $('#level2').click();
+	   		}
+	   		$("#unstructuredAddress").keyup(function(event){
+			    if(event.keyCode == 13){
+			        $("#btnPrefillUnstructuredParams").click();
+			    }
+			});		
+			$("#streetName").keyup(function(event){
+			    if(event.keyCode == 13){
+			        $("#btnPrefillParams").click();
+			    }
+			});	
+			$("#houseNumber").keyup(function(event){
+			    if(event.keyCode == 13){
+			        $("#btnPrefillParams").click();
+			    }
+			});	
+			$("#boxNumber").keyup(function(event){
+			    if(event.keyCode == 13){
+			        $("#btnPrefillParams").click();
+			    }
+			});	
+			$("#postalCode").keyup(function(event){
+			    if(event.keyCode == 13){
+			        $("#btnPrefillParams").click();
+			    }
+			});
+			$("#municipalityName").keyup(function(event){
+			    if(event.keyCode == 13){
+			        $("#btnPrefillParams").click();
+			    }
+			});
+			function refreshCaret(e){
+				if ($("#collapsibleAddrPanel")[0].className.indexOf("up")!=-1){
+					$("#collapsibleAddrPanel")[0].innerHTML="Prefilled Parameters"+"<span class=\"dropup\"><span class=\"caret\"></span></span>";
+					$("#collapsibleAddrPanel")[0].className="down";
+				}else{
+					$("#collapsibleAddrPanel")[0].innerHTML="Prefilled Parameters"+"<span class='caret'><span class='dropup'></span></span>";
+					$("#collapsibleAddrPanel")[0].className="up";
+				}
+			}
+	   </script>
+</body>
+</html>

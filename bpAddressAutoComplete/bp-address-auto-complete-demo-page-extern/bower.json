@@ -1,0 +1,9 @@
+{
+  "name": "bp-address-auto-complete-demo-page-extern",
+  "version": "",
+  "dependencies": {
+    "bp-address-auto-complete-wrapper": "..\\bp-address-auto-complete-wrapper",
+    "bootstrap": "~3.3.5"
+  },
+  "devDependencies": {}
+}

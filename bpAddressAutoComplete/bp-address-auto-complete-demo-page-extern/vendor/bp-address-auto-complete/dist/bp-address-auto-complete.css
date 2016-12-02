@@ -1,0 +1,183 @@
+.bpaac-form-control 
+{ 	
+	margin-bottom: 6px; 
+	margin-left: 6px; 
+}
+.bpaac-panel-title{
+	font-size: 14px;
+}
+.bpaac-lb-sm {
+  font-weight: normal;
+}
+.bpaac-panel-heading {
+  padding: 7px 10px;
+}
+.bpaac-btn { 
+	margin-bottom: 6px; 
+	margin-left: 6px; 
+}
+.dropdown-menu bpaac-help-option{
+	align-self: right;
+}
+.bpaac-suggestion-char-highlight{
+	font-weight: bold;
+}
+
+.bpaac-dropdown-menu ul{
+	padding-bottom: 0;
+	padding-left: 0;
+	padding-top: 0;
+	margin: 0;
+}
+
+.bpaac-dropdown-menu li {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #333333;
+	font-weight: 400;
+	padding: 4px 10px;
+	font-size: 1em;
+	cursor: pointer;
+	border-bottom: 1px solid #dddddd;
+}
+.bpaac-dropdown-menu li:hover {
+	background: #dddddd;
+}
+.bpaac-dropdown-menu li:active,
+.bpaac-dropdown-menu li.active {
+	color: #20a28e;
+	background: #dddddd;
+}
+
+.bpaac-dropdown-menu li.validatedSuggestion {
+	color: #20a28e;
+	background: #7e86dd;
+}
+
+.bpaac-dropdown-menu:focus{
+	outline:none;
+}
+
+.bpaac-dropdown-menu{
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1000;
+	float: left;
+	min-width: 160px;
+	margin: 2px 0 0;
+	font-size: 14px;
+	text-align: left;
+	background-color: #fff;
+	/* border: 1px solid #ccc; */
+	border: 1px solid rgba(0, 0, 0, .15);
+	border-radius: 4px;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	padding: 5px 0 0 0;
+	overflow-x: auto;
+	width: 100%;
+}
+
+.bpaac-suggestion-message {
+	font-size : 85%;
+	color:rgba(66, 137, 143, 0.62);
+}
+
+.bpaac-dropdown{
+	width : 400px;
+	position:relative;
+	height:26px;
+}
+
+.bpaac-input-width{
+	position:relative;
+	width: calc(100% - 35px);
+	float:left;
+	background-color:white;
+}
+.bpaac-input {
+	width: 100%;
+	position: relative;
+	top: 0;
+	left: 0;
+	z-index: 5;
+	padding-left: 5px;
+	padding-right:0px;
+	line-height: 20px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	background-color:transparent;
+}
+
+#bpaac-typeahead{
+	width: calc(100% - 35px);
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: transparent;
+	z-index: 1;
+	padding-left: 5px;
+	padding-right:0px;
+	line-height: 20px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	-webkit-text-fill-color: silver;
+	color: silver
+}
+
+.bpaac-search-bar {
+	position: relative;
+	min-height: 20px;
+	height:26px;
+}
+.bpaac-clear {
+	position: absolute;
+	right: 5px;
+	top:6px;
+	z-index: 12;
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAvklEQVR4nJ2SsQ2DQAxFXxBSGspskCbTpKSiQaDUGYE5UBANFWWmScMWFESKEEU+ku8OGtz4/L+/fbZ8qqqKIxYdUnnCOzABL4NHiifxgTABeuAMFEqO5QvhvfIc4Qh0pmAOfORX65QXfPUBtCa+mncrfnPGWeSAa4PweU8YAbXXae1ce7lOUOPOZDvn4gNhAmQGb4Eb7swZO1tNgS/QACXwk2+Ep5itxqbiG7hYkv9CSuDp4cHJjWxbgB++1QVY2ijORRI4QQAAAABJRU5ErkJggg==')
+	no-repeat;
+	background-size: 14px 14px;
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+}
+
+.bpaac-clear:hover {
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAY0lEQVR4nMWRSwrAMAhEHyHLnq0nlJwsB3GXbqYg+SyaQvtAxFEYE+FPTsABA5K0pNrVHzjUbIoCZOVbc80NWBhqQO1qW62aOocYJaw/JU+cqvQl245bb3z1q1t3jM5P9A+5ALYeN4B2Qo/zAAAAAElFTkSuQmCC')
+	no-repeat;
+}
+
+.bpaac-button{
+	left: 0;
+	border: 0 solid transparent;
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	position: relative;
+	height: 26px;
+	background-color:#4285f4;
+	margin: 0;
+	outline: none;
+	padding: 0 0;
+	width: 35px;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	box-sizing: border-box;
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAA30lEQVR4nI2RMU7DQBBFvy1hcQHTxkI0S8kVUiBxKg4RxQUnMD0Fd4AG6KgcKkRHUBQrxUszi8ZrL+JLXzv6s0+7mhEg8wJogR4Y7GyBxt35dSyugW/mtbX+BFw46B64BCogAJ2DmxRcW7Ob+5KD2xTsrREyYLB+7/MCGCRV5oOmqiQN5tMYlpI+rb6YgXy+8WEp6cHq2wwY88dRatPaugEF4CSZKsDV3B5vgJ/MHqNegToFBZwDd8AHsAfegZW99GLwG3CWgn+5dvAzoDIzkFRfkpaSniTtJKkA/smOdQRp67ytYRSzEQAAAABJRU5ErkJggg==');
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.bpaac-dropdown-menu-container{
+	position: relative;
+}
+
+.bpaac-button:active{
+	border: 0 solid transparent;
+	-webkit-box-shadow: inset 0 2px 0 rgba(0,0,0,.15);
+	box-shadow: inset 0 2px 0 rgba(0,0,0,.15);
+	background-color: #3c78dc;
+	background-color: -webkit-linear-gradient(top,#3c7ae4,#3f76d3);
+	background-color: linear-gradient(top,#3c7ae4,#3f76d3);
+}
