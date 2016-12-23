@@ -1,7 +1,26 @@
 BpostAddressAutoComplete
 ==================
+<img align="right" height="160" width="260" src="https://github.com/bpost/AddressValidation-QuickAddressSearchBar/blob/master/bpAddressAutoComplete/asb.png">
 
-<img align="right"height="60" src="http://www.bpost.be/sites/all/themes/custom/bpost_selfservice/logo.png">
+ <br/>
+
+## Introduction
+Whoever is interested to **use** the widget BpostAddressAutoComplete, and **include** it in a working page should follow the Usage section. 
+ <br/>
+Whoever is interested to **contribute** or do any **modifications** on the widget should follow the steps in the Development Prerequisites section and then in the Deployment section to generate the distributable files. 
+
+
+## Usage (Include)
+* Simply copy the files found in the **dist** folders of the vendor modules
+ **bp-address-auto-complete**, and **bp-address-auto-complete-wrapper**
+ and **include** them into the page.
+<br/> The files to copy are *bp-address-auto-complete.js*, *bp-address-auto-complete.css*, 
+ *bp-address-auto-complete-wrapper.js* and *bp-address-auto-complete-wrapper.css*. 
+<br/> For conveniency they can be copied into distinct folders. 
+ <br/>
+* As an example the **bp-address-auto-complete-demo-page-extern** module is provided where the options minimum level, environment and prefilled parameters and their usage is demonstrated. 
+The module can be deployed either on a local server (localhost) by following the steps in the **Development** section and running grunt on the **bp-address-auto-complete-demo-page-extern**   by command prompt, or be deployed on any web server (Bpost web site will be soon updated to publish the module external demo page).
+
 
 ## Usage
 * Simply copy the files found in the **dist** folders of the vendor modules
