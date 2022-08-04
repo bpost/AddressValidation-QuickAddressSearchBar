@@ -7,7 +7,7 @@ angular.module('bpAddressAutoComplete').filter('highlightSuggestion', function(U
             query = query.concat(UnicodeService.removeDiacritics(word) + "|");
         });
 
-		var normalizedInput = UnicodeService.removeDiacritics(input);
+	var normalizedInput = UnicodeService.removeDiacritics(input);
         query = query.concat(")");
         return normalizedInput.replace(new RegExp('(' + query + ')', 'gi'), '<span class="bpaac-suggestion-char-highlight">$1</span>');
     };
