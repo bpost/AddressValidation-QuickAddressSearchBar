@@ -7,7 +7,6 @@ angular.module('bpAddressAutoComplete').controller('BpAddressAutoCompleteControl
 
 	var controller = this;
 	// instance methods
-	controller.test = 1;
 	controller.onInputChange = onInputChange;
 	controller.mayShowClearButton = mayShowClearButton;
 	controller.checkKeyDown = checkKeyDown;
