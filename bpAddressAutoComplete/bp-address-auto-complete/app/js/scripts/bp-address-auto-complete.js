@@ -6,6 +6,7 @@ angular.module('bpAddressAutoComplete').directive('bpAddressAutoComplete', ['$te
 		transclude: true,
 		scope: {
 			url: '@url',
+			apiKey: '@',
 			name: '@',
 			minLevel: '@',
 			bpAddressparams: '@'

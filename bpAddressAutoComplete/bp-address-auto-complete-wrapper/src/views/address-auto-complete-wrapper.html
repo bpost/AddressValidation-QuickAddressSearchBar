@@ -2,7 +2,7 @@
     <div class="bpaac-dropdown-validation"><div class="bpaac-validated-icon" ng-show="showValidationIcon()"></div>
         {{validationMessage}}
     </div>
-    <bp-address-auto-complete name="wrapped" url="{{url}}" min-level="{{minLevel}}"  bp-addressparams="{{bpAddressparams}}">
+    <bp-address-auto-complete name="wrapped" url="{{url}}" min-level="{{minLevel}}"  bp-addressparams="{{bpAddressparams}}" api-key="{{apiKey}}">
         <div ng-transclude></div>
     </bp-address-auto-complete>
 </div>

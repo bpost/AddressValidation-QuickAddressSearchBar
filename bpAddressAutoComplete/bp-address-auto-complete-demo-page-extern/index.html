@@ -41,8 +41,8 @@
 	<div class="col-sm-5">		
 		<div class="panel-group">
 				<div class="panel-body">    
-						<bp-address-auto-complete-wrapper ng-model="selectedAddress" bp-addressparams="{{addressparams}}" url="{{aacUrl}}" min-level="{{selectedLevel}}">
-							<bp-address-validator url="{{valUrl}}"></bp-address-validator>
+						<bp-address-auto-complete-wrapper ng-model="selectedAddress" bp-addressparams="{{addressparams}}" url="{{aacUrl}}" min-level="{{selectedLevel}}" api-key="{{apiKey}}">
+							<bp-address-validator url="{{valUrl}}" api-key="{{apiKey}}"></bp-address-validator>
 						</bp-address-auto-complete-wrapper>
 
 						<br /><br />
@@ -94,8 +94,8 @@
 								    <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
 								  </button>
 								  <ul class="dropdown-menu environment-option"  id="environmentddm">
-								    <li><a href="#" id="env1" ng-click="setToAc1()">AC1 </a></li>
-								    <li><a href="#" id="env2" ng-click="setToAc2()">AC2 </a></li>
+								    <li><a href="#" id="env1" ng-click="setToAc()">AC </a></li>
+								    <li><a href="#" id="env2" ng-click="setToSt()">ST </a></li>
 								    <li role="separator" class="divider"></li>
 								    <li><a href="#" id="env3" ng-click="setToPr()">PR </a></li>
 								  </ul>

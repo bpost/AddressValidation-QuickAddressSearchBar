@@ -10,6 +10,7 @@ angular.module('bpAddressAutoCompleteWrapper').directive('bpAddressAutoCompleteW
         transclude: true,
         scope: {
             url: '@',
+            apiKey: '@',
             minLevel: '@',
             bpAddressparams: '@'
         },
@@ -41,7 +42,7 @@ angular.module('bpAddressAutoCompleteWrapper').run(['$templateCache', function($
     "\n" +
     "    </div>\r" +
     "\n" +
-    "    <bp-address-auto-complete name=\"wrapped\" url=\"{{url}}\" min-level=\"{{minLevel}}\"  bp-addressparams=\"{{bpAddressparams}}\">\r" +
+    "    <bp-address-auto-complete name=\"wrapped\" url=\"{{url}}\" api-key=\"{{apiKey}}\" min-level=\"{{minLevel}}\"  bp-addressparams=\"{{bpAddressparams}}\">\r" +
     "\n" +
     "        <div ng-transclude></div>\r" +
     "\n" +

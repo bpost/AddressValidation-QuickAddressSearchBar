@@ -4,7 +4,8 @@ angular.module('bpAddressAutoComplete').directive('bpAddressValidator', ['$templ
 		restrict: 'AE',
 		require: ['bpAddressValidator', '^bpAddressAutoComplete'],
 		scope: {
-			url: '@url'
+			url: '@url',
+			apiKey: '@'
 		},
 		template: $templateCache.get('views/address-validator.html'),
 		controller: "BpAddressValidatorController",

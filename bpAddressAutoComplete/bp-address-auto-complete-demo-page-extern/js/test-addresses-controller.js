@@ -2,19 +2,25 @@ angular.module('autocompleteDemoPageExtern').controller('TestAddressesController
 	'use strict';
 
 	var Urls = {
-		'aacUrlAc1' :  "https://webservices-pub.acbpost.be/ws/ExternalMailingAddressProofingCSREST_v1_AC1/address/autocomplete",
-		'aacUrlAc2' :  "https://webservices-pub.acbpost.be/ws/ExternalMailingAddressProofingCSREST_v1/address/autocomplete",
-		'aacUrlPr' :  "https://webservices-pub.bpost.be/ws/ExternalMailingAddressProofingCSREST_v1/address/autocomplete",
-		'valUrlAc1' : "https://webservices-pub.acbpost.be/ws/ExternalMailingAddressProofingCSREST_v1_AC1/address/validateAddresses",
-		'valUrlAc2' : "https://webservices-pub.acbpost.be/ws/ExternalMailingAddressProofingCSREST_v1/address/validateAddresses",
-		'valUrlPr' :  "https://webservices-pub.bpost.be/ws/ExternalMailingAddressProofingCSREST_v1/address/validateAddresses"
+		'aacUrlAc' :  "https://api.mailops-np.bpost.cloud/roa-info-ac/externalMailingAddressProofingRest/autocomplete",
+		'aacUrlSt' :  "https://api.mailops-np.bpost.cloud/roa-info-st2/externalMailingAddressProofingRest/autocomplete",
+		'aacUrlPr' :  "https://api.mailops.bpost.cloud/roa-info/externalMailingAddressProofingRest/autocomplete",
+		'valUrlAc' :  "https://api.mailops-np.bpost.cloud/roa-info-ac/externalMailingAddressProofingRest/validateAddresses",
+		'valUrlSt' :  "https://api.mailops-np.bpost.cloud/roa-info-st2/externalMailingAddressProofingRest/validateAddresses",
+		'valUrlPr' :  "https://api.mailops.bpost.cloud/roa-info/externalMailingAddressProofingRests/validateAddresses"
+	};
+
+	var apiKeys = {
+		'apiKeyAc' :  "lRsjlOFOne9x07XWrCTrv2Wa5G4JeFD17YKTqGdN",
+		'apiKeySt' :  "bBkvimXYnAaEEKMyGqoWO2XiaZCQyqUi7VReYzPJ",
+		'apiKeyPr' :  "GOpRFcQ4OQ5Igu0WhG8eS1d87kF6RuaxaZ8c12KC"
 	};
 
 	$scope.selectedLevel = 2;
 	$scope.selectedAddress = {};
-	$scope.setToAc2 = setToAc2;
+	$scope.setToSt= setToSt;
 	$scope.setToPr = setToPr;
-	$scope.setToAc1 = setToAc1;
+	$scope.setToAc = setToAc;
     $scope.setLevel = setLevel;
 	$scope.clearInput = clearInput;
 	$scope.isSetToProduction = isSetToProduction;
@@ -30,7 +36,7 @@ angular.module('autocompleteDemoPageExtern').controller('TestAddressesController
 	$scope.clearPrefilledParams = clearPrefilledParams;
 	$scope.clearPrefilledUnstructuredParams = clearPrefilledUnstructuredParams
 	var environmentFunction;
-	setToAc1();
+	setToAc();
 	prefillParams();
 
 	function isSetToProduction(){
@@ -42,24 +48,30 @@ angular.module('autocompleteDemoPageExtern').controller('TestAddressesController
 	function getUrlBundle ()  {
 		return Urls;	
 	}
+	function getApiKeyBundle() {
+		return apiKeys;
+	}
 	function clearInput(focus){
 		$scope.$broadcast('bpAddressAutoComplete.clearInput', focus);
 	}
-	function setToAc1(){
-		$scope.aacUrl = getUrlBundle().aacUrlAc1;
-		$scope.valUrl = getUrlBundle().valUrlAc1;
-		$scope.environment = "ac1";
-		environmentFunction = setToAc1;
+	function setToAc(){
+		$scope.aacUrl = getUrlBundle().aacUrlAc;
+		$scope.valUrl = getUrlBundle().valUrlAc;
+		$scope.apiKey = getApiKeyBundle().apiKeyAc;
+		$scope.environment = "ac";
+		environmentFunction = setToAc;
 	}
-	function setToAc2(){
-		$scope.aacUrl = getUrlBundle().aacUrlAc2;
-		$scope.valUrl = getUrlBundle().valUrlAc2;
-		$scope.environment = "ac2";
-		environmentFunction = setToAc2;
+	function setToSt(){
+		$scope.aacUrl = getUrlBundle().aacUrlSt;
+		$scope.valUrl = getUrlBundle().valUrlSt;
+		$scope.apiKey = getApiKeyBundle().apiKeySt;
+		$scope.environment = "st";
+		environmentFunction = setToSt;
 	}
 	function setToPr(){
 		$scope.aacUrl = getUrlBundle().aacUrlPr;
 		$scope.valUrl = getUrlBundle().valUrlPr;
+		$scope.apiKey = getApiKeyBundle().apiKeyPr;
 		$scope.environment = "pr";
 		environmentFunction = setToPr;
 	}

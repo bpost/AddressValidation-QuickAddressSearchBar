@@ -166,7 +166,8 @@ angular.module('bpAddressAutoComplete').controller('BpAddressAutoCompleteControl
 			'url': $scope.url,
 			'method': 'GET',
 			'headers': {
-				'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+				'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+				'x-api-key': $scope.apiKey
 			},
 			'params': {
 				'q': controller.searchText,

@@ -21,7 +21,8 @@ angular.module('bpAddressAutoComplete').controller('BpAddressValidatorController
 		var string = parentController.searchText;
 		var body = controller.prepareValidationData(string);
 		$http.post($scope.url, body, {headers: {
-			'Content-Type': "application/json"
+			'Content-Type': "application/json",
+			'x-api-key': $scope.apiKey
 		}}).success(function (data) {
 			var aitResponse = parseAitResponseObject(data);
 			addAITSuggestion(aitResponse);

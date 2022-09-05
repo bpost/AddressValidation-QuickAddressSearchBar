@@ -170,7 +170,8 @@ angular.module('bpAddressAutoComplete').controller('BpAddressAutoCompleteControl
 			'url': $scope.url,
 			'method': 'GET',
 			'headers': {
-				'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+				'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+				'x-api-key': $scope.apiKey
 			},
 			'params': {
 				'q': controller.searchText,
@@ -682,6 +683,7 @@ angular.module('bpAddressAutoComplete').directive('bpAddressAutoComplete', ['$te
 		transclude: true,
 		scope: {
 			url: '@url',
+			apiKey: '@',
 			name: '@',
 			minLevel: '@',
 			bpAddressparams: '@'
@@ -736,7 +738,8 @@ angular.module('bpAddressAutoComplete').controller('BpAddressValidatorController
 		var string = parentController.searchText;
 		var body = controller.prepareValidationData(string);
 		$http.post($scope.url, body, {headers: {
-			'Content-Type': "application/json"
+			'Content-Type': "application/json",
+			'x-api-key': $scope.apiKey
 		}}).success(function (data) {
 			var aitResponse = parseAitResponseObject(data);
 			addAITSuggestion(aitResponse);
@@ -947,7 +950,8 @@ angular.module('bpAddressAutoComplete').directive('bpAddressValidator', ['$templ
 		restrict: 'AE',
 		require: ['bpAddressValidator', '^bpAddressAutoComplete'],
 		scope: {
-			url: '@url'
+			url: '@url',
+			apiKey: '@'
 		},
 		template: $templateCache.get('views/address-validator.html'),
 		controller: "BpAddressValidatorController",
@@ -1463,8 +1467,8 @@ angular.module('bpAddressAutoComplete').run(['$templateCache', function($templat
     "<script src=\"js/scripts/unicode-service.js\"></script>\n" +
     "<script src=\"js/scripts/translation-service.js\"></script>\n" +
     "<div bp-address-auto-complete selected-address=\"selectedAddress\"\n" +
-    "\t valurl=\"http://webservices-dca.netpost/ws/MailingAddressProofingCSREST_v1/address/validateAddresses\"\n" +
-    "\t aacurl=\"http://webservices-dca.netpost/ws/MailingAddressProofingCSREST_v1/address/autocomplete?\"></div>\n" +
+    "\t valurl=\"https://api.mailops-np.bpost.cloud/roa-info/externalMailingAddressProofingRestt/validateAddresses\"\n" +
+    "\t aacurl=\"https://api.mailops-np.bpost.cloud/roa-info/externalMailingAddressProofingRest/autocomplete?\"></div>\n" +
     "</body>\n" +
     "</html>\n" +
     "\n"
