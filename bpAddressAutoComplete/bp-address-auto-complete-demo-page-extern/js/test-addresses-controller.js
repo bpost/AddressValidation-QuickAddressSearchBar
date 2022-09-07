@@ -7,7 +7,7 @@ angular.module('autocompleteDemoPageExtern').controller('TestAddressesController
 		'aacUrlPr' :  "https://api.mailops.bpost.cloud/roa-info/externalMailingAddressProofingRest/autocomplete",
 		'valUrlAc' :  "https://api.mailops-np.bpost.cloud/roa-info-ac/externalMailingAddressProofingRest/validateAddresses",
 		'valUrlSt' :  "https://api.mailops-np.bpost.cloud/roa-info-st2/externalMailingAddressProofingRest/validateAddresses",
-		'valUrlPr' :  "https://api.mailops.bpost.cloud/roa-info/externalMailingAddressProofingRests/validateAddresses"
+		'valUrlPr' :  "https://api.mailops.bpost.cloud/roa-info/externalMailingAddressProofingRest/validateAddresses"
 	};
 
 	var apiKeys = {
