@@ -23,7 +23,7 @@ The module can be deployed either on a local server (localhost) by following the
 
 ## Api keys
 The autocomplete and validateAddress urls will need API keys. i.e, A http request header called x-api-key needs to be added in the http request. apiKey is added as a scope variable for directive bp-address-auto-complete and bp-address-validator.
-Please request Jana.Roels@bpost.be to generate a API key for your application.
+Please request addressvalidation@bpost.be to generate a API key for your application.
 
 ## Development
 ## Prerequisites

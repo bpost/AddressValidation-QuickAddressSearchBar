@@ -11,9 +11,9 @@ angular.module('autocompleteDemoPageExtern').controller('TestAddressesController
 	};
 
 	var apiKeys = {
-		'apiKeyAc' :  "lRsjlOFOne9x07XWrCTrv2Wa5G4JeFD17YKTqGdN",
-		'apiKeySt' :  "bBkvimXYnAaEEKMyGqoWO2XiaZCQyqUi7VReYzPJ",
-		'apiKeyPr' :  "GOpRFcQ4OQ5Igu0WhG8eS1d87kF6RuaxaZ8c12KC"
+		'apiKeyAc' :  "",
+		'apiKeySt' :  "",
+		'apiKeyPr' :  ""
 	};
 
 	$scope.selectedLevel = 2;

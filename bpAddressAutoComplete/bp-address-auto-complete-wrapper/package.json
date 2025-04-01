@@ -1,6 +1,6 @@
 {
   "name": "bp-address-auto-complete-wrapper",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-angular-templates": "^0.5.7",

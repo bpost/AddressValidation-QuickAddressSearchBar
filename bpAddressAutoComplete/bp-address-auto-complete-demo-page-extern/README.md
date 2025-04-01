@@ -3,19 +3,19 @@
 
 ## What's new ?
 1. Updated URL's.
-2. Api keys to supoort these urls.
+2. Api keys to support these urls.
 
 
 ## Description
 This module is a demo page which includes the aac wrapper with some parameterized options available to the user to:
     * change the environment endpoints 
-    * adapt envionemnt based api keys
+    * adapt environment based api keys
     * set the minimum level of validation 
     * some prefilled parameters which allow the user to fill in the search bar with prefilled values.
 
 ## Api keys
 The autocomplete and validateAddress urls will need API keys. i.e, A http request header called x-api-key needs to be added in the http request. apiKey is added as a scope variable for directive bp-address-auto-complete and bp-address-validator.
-Please request Jana.Roels@bpost.be to generate a API key for your application.
+Please request addressvalidation@bpost.be to generate a API key for your application.
 
 ## Usage
 Simply deploy the module on a web server or on a local static server as described below using grunt to launch the page localhost.
