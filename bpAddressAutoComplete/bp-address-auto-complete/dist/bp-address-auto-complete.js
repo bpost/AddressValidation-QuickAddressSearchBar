@@ -1467,7 +1467,7 @@ angular.module('bpAddressAutoComplete').run(['$templateCache', function($templat
     "<script src=\"js/scripts/unicode-service.js\"></script>\n" +
     "<script src=\"js/scripts/translation-service.js\"></script>\n" +
     "<div bp-address-auto-complete selected-address=\"selectedAddress\"\n" +
-    "\t valurl=\"https://api.mailops-np.bpost.cloud/roa-info/externalMailingAddressProofingRestt/validateAddresses\"\n" +
+    "\t valurl=\"https://api.mailops-np.bpost.cloud/roa-info/externalMailingAddressProofingRest/validateAddresses\"\n" +
     "\t aacurl=\"https://api.mailops-np.bpost.cloud/roa-info/externalMailingAddressProofingRest/autocomplete?\"></div>\n" +
     "</body>\n" +
     "</html>\n" +
