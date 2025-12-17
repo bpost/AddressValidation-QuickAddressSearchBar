@@ -23,7 +23,7 @@ angular.module('bpAddressAutoComplete').controller('BpAddressAutoCompleteControl
 	controller.moveCursorToLastCharacter = moveCursorToMissingElementOrLastCharacter;
 	controller.retranslate = retranslate;
 	controller.showAddressNotFoundMessage = showAddressNotFoundMessage;
-	controller.loadParams = loadParams;		
+	controller.loadParams = loadParams;
 	controller.showMissingElements = showMissingElements;
 	// instance properties
 	controller.addressIsValidated = false;
@@ -226,13 +226,16 @@ angular.module('bpAddressAutoComplete').controller('BpAddressAutoCompleteControl
 			suggestionToAdd = suggestion.address;
 		}
 		if(suggestionToAdd){
+		    if(suggestionToAdd.businessName != null){
+                suggestionToAdd.searchBarString += ' (' +suggestionToAdd.businessName+')';
+            }
 			if(suggestion.messages){
 				suggestionToAdd.messages = suggestion.messages;
 			}
 			controller.suggestions.push(suggestionToAdd);
 		}
 	}
-	
+
 	function onInputChange() {
 		collapseDropdown = false;
 		resetArrowSelectedIndex();
@@ -256,19 +259,19 @@ angular.module('bpAddressAutoComplete').controller('BpAddressAutoCompleteControl
 		clearTypeAhead();
 		resetArrowSelectedIndex();
 		//when selecting municipality + postal code, add one space in the beginning
-		if(suggestion.hasOwnProperty("postalCode")	&& suggestion.hasOwnProperty("municipalityName") 
-			&& !suggestion.hasOwnProperty("streetName") && !suggestion.hasOwnProperty("houseNumber") 
-				&& !suggestion.hasOwnProperty("boxNumber")){					
+		if(suggestion.hasOwnProperty("postalCode")	&& suggestion.hasOwnProperty("municipalityName")
+			&& !suggestion.hasOwnProperty("streetName") && !suggestion.hasOwnProperty("houseNumber")
+				&& !suggestion.hasOwnProperty("boxNumber")){
 			setSearchText(" " + suggestion.string);
 			continueChecks = true;
 		}
 
 		missingElementCursorPosition = null;
 
-		if (addressIsComplete(suggestion)) {	
-			if (!continueChecks){			
-				setSearchText(suggestion.string); 
-			}		
+		if (addressIsComplete(suggestion)) {
+			if (!continueChecks){
+				setSearchText(suggestion.string);
+			}
 			collapseDropdown = true;
 			showAddressIsValidated();
 			$scope.setSelectedAddress(suggestion);
@@ -278,7 +281,7 @@ angular.module('bpAddressAutoComplete').controller('BpAddressAutoCompleteControl
 				if (suggestion.hasOwnProperty("streetName") && suggestion.hasOwnProperty("houseNumber")){
 					setSearchText(suggestion.searchBarString);
 				}else {
-					setSearchText(suggestion.string); 
+					setSearchText(suggestion.string);
 				}
 			}
 			controller.skipNextBlur = true;
@@ -326,13 +329,13 @@ angular.module('bpAddressAutoComplete').controller('BpAddressAutoCompleteControl
 					concatStr += " BOX " + params.boxNumber;
 				}
 			}else {
-				delete newJsonObj.boxNumber;	
+				delete newJsonObj.boxNumber;
 			}
 			if (params.streetName || params.houseNumber || params.boxNumber || (params.hasOwnProperty('postalCode') && params.postalCode) || (params.hasOwnProperty('municipalityName') && params.municipalityName)){
 				concatStr += "  -  ";
 			}
 			if(params.hasOwnProperty('postalCode') && params.postalCode){
-				leastone = true;			
+				leastone = true;
 				concatStr += params.postalCode;
 			}else {
 				delete newJsonObj.postalCode;
@@ -343,7 +346,7 @@ angular.module('bpAddressAutoComplete').controller('BpAddressAutoCompleteControl
 				if (leastone) {
 					concatStr += " ";
 				}
-				delete newJsonObj.municipalityName;	
+				delete newJsonObj.municipalityName;
 			}
 		}
 		params = newJsonObj;
@@ -356,10 +359,10 @@ angular.module('bpAddressAutoComplete').controller('BpAddressAutoCompleteControl
 			return;
 		}
 		var missingElements = [];
-				
-		if(!suggestion.hasOwnProperty("unstructuredAddress") && !suggestion.hasOwnProperty("unstructuredAddress") 
-			&& !suggestion.hasOwnProperty("streetName") && !suggestion.hasOwnProperty("houseNumber") 
-			&& !suggestion.hasOwnProperty("postalCode") && !suggestion.hasOwnProperty("boxNumber") 
+
+		if(!suggestion.hasOwnProperty("unstructuredAddress") && !suggestion.hasOwnProperty("unstructuredAddress")
+			&& !suggestion.hasOwnProperty("streetName") && !suggestion.hasOwnProperty("houseNumber")
+			&& !suggestion.hasOwnProperty("postalCode") && !suggestion.hasOwnProperty("boxNumber")
 			&& !suggestion.hasOwnProperty("postalCode") && !suggestion.hasOwnProperty("municipalityName")){
 			controller.suggestionValidationMessage = "";
 			$scope.$broadcast('move-caret', 0);
@@ -381,7 +384,7 @@ angular.module('bpAddressAutoComplete').controller('BpAddressAutoCompleteControl
 		}
 		if(getMinimumAddressLevel() === ADDRESSLEVEL.SUFFIX && !suggestion.hasOwnProperty('boxNumber') ){
 			missingElements.push("boxNumber");
-		}		
+		}
 		if (!suggestion.hasOwnProperty("postalCode")) {
 			missingElements.push("postalCode");
 		}
@@ -441,7 +444,7 @@ angular.module('bpAddressAutoComplete').controller('BpAddressAutoCompleteControl
 				return partialAddress.length + 1;
 			}else if (address.hasOwnProperty('houseNumber') && address.houseNumber) {
 				partialAddress += " " + address.houseNumber;
-			} 
+			}
 		}else if(address.hasOwnProperty('houseNumber') && address.houseNumber) {
 			partialAddress += " " + address.houseNumber;
 		}
@@ -464,7 +467,7 @@ angular.module('bpAddressAutoComplete').controller('BpAddressAutoCompleteControl
 		}
 		if (address.hasOwnProperty('municipalityName')) {
 			partialAddress += address.municipalityName;
-		} else { 
+		} else {
 			return partialAddress.length + 1;
 		}
 		return partialAddress.length;
@@ -487,7 +490,7 @@ angular.module('bpAddressAutoComplete').controller('BpAddressAutoCompleteControl
 				&& suggestion.hasOwnProperty("streetName")
 				&& suggestion.hasOwnProperty("municipalityName")
 				&& suggestion.hasOwnProperty("postalCode")
-				&& suggestion.hasOwnProperty("houseNumber") 
+				&& suggestion.hasOwnProperty("houseNumber")
 				&& suggestion.hasOwnProperty("boxNumber")));
 		}else if(getMinimumAddressLevel() === ADDRESSLEVEL.STREET){
 			return (suggestion.isComplete || (suggestion
@@ -533,9 +536,9 @@ angular.module('bpAddressAutoComplete').controller('BpAddressAutoCompleteControl
 					typeAheadWord = "";
 					event.preventDefault();
 				}
-			}			
+			}
 		} else if (event.keyCode === 9) { //tab key
-			selectFirstInListOfSuggesions();			
+			selectFirstInListOfSuggesions();
 		} else if (event.ctrlKey === true && event.keyCode === 46) {
 			clearWidget();
 		} else if (event.keyCode === 13) { //enter pressed
@@ -558,7 +561,7 @@ angular.module('bpAddressAutoComplete').controller('BpAddressAutoCompleteControl
 	}
 
 	function clearSearchText(){
-		controller.searchText = "";		
+		controller.searchText = "";
 	}
 
 	function typeAheadIsShown() {
@@ -665,7 +668,7 @@ angular.module('bpAddressAutoComplete').controller('BpAddressAutoCompleteControl
 	}
 	function selectFirstInListOfSuggesions(){
 		event.preventDefault();
-		$scope.selectedIndex = 0;		
+		$scope.selectedIndex = 0;
 	}
 	function suggestionMouseLeave(){
 		$scope.selectedIndex = -1;
@@ -702,16 +705,16 @@ angular.module('bpAddressAutoComplete').directive('bpAddressAutoComplete', ['$te
 			scope.clearSelectedAddress = function(){
 				scope.setSelectedAddress(null);
 			};
-			attrs.$observe("bpAddressparams", function(value){	
+			attrs.$observe("bpAddressparams", function(value){
 				if (value){
 					var jsonObj = JSON.parse(value);
-					var searchStr = controllers[0].loadParams(jsonObj);				
+					var searchStr = controllers[0].loadParams(jsonObj);
 					controllers[0].searchText = searchStr;
 					controllers[0].bpTypeAhead = "";
 					controllers[0].showMissingElements(jsonObj);
 					controllers[0].getTopSuggestions();
 				}
-			});			
+			});
 		}
 	};
 }]);
@@ -793,7 +796,7 @@ angular.module('bpAddressAutoComplete').controller('BpAddressValidatorController
 					&& !validatedPostalAddress.StructuredDeliveryPointLocation.StreetName === "") {
 					aitSuggestion.streetName = validatedPostalAddress.StructuredDeliveryPointLocation.StreetName;
 				}
-				if (validatedPostalAddress.StructuredDeliveryPointLocation.hasOwnProperty('StreetNumber') 
+				if (validatedPostalAddress.StructuredDeliveryPointLocation.hasOwnProperty('StreetNumber')
 					&& !validatedPostalAddress.StructuredDeliveryPointLocation.StreetNumber === "") {
 					aitSuggestion.houseNumber = validatedPostalAddress.StructuredDeliveryPointLocation.StreetNumber;
 				}
@@ -804,7 +807,7 @@ angular.module('bpAddressAutoComplete').controller('BpAddressValidatorController
 			}
 			if (validatedPostalAddress.StructuredPostalCodeMunicipality) {
 				if (validatedPostalAddress.StructuredPostalCodeMunicipality.hasOwnProperty('MunicipalityName')
-					&& !validatedPostalAddress.StructuredPostalCodeMunicipality.MunicipalityName === "" 
+					&& !validatedPostalAddress.StructuredPostalCodeMunicipality.MunicipalityName === ""
 					&& validatedPostalAddress.StructuredPostalCodeMunicipality.hasOwnProperty('PostalCode')
 					&& !validatedPostalAddress.StructuredPostalCodeMunicipality.PostalCode === "") {
 					aitSuggestion.municipalityName = validatedPostalAddress.StructuredPostalCodeMunicipality.MunicipalityName;
@@ -1249,7 +1252,7 @@ angular.module('bpAddressAutoComplete').service('TranslationService', function(L
 			"missing-elements-5": "Please provide a %s, a %s, a %s, a %s and a %s",
 			"streetName": "street name",
 			"houseNumber": "house number",
-			"boxNumber": "box number",			
+			"boxNumber": "box number",
 			"postalCode": "postal code",
 			"municipalityName": "municipality",
 			"address-not-found": "Address not recognized.",
@@ -1271,7 +1274,7 @@ angular.module('bpAddressAutoComplete').service('TranslationService', function(L
 			"houseNumber": "un numéro de maison",
 			"boxNumber": "une boîte postale",
 			"postalCode": "un code postal",
-			"municipalityName": "un nom de commune",			
+			"municipalityName": "un nom de commune",
 			"address-not-found": "Adresse non-reconnue.",
 			"address-validated": "L'adresse a été validée.",
 			"input-placeholder": "Fournir une adresse ...",

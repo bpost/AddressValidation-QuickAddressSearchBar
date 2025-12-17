@@ -24,6 +24,10 @@ angular.module('autocompleteDemoPageExtern').controller('TestAddressesController
     $scope.setLevel = setLevel;
 	$scope.clearInput = clearInput;
 	$scope.isSetToProduction = isSetToProduction;
+	$scope.includeListOfBoxes = includeListOfBoxes;
+    $scope.includeNisCode = includeNisCode;
+    $scope.includeBusinessName = includeBusinessName;
+    $scope.includeBusinessNameWithBoxes = includeBusinessNameWithBoxes;
 	$scope.unstructuredAddress = "";
 	$scope.streetName = "";
 	$scope.houseNumber = "";
@@ -34,7 +38,11 @@ angular.module('autocompleteDemoPageExtern').controller('TestAddressesController
 	$scope.prefillParams = prefillParams;
 	$scope.prefillUnstructuredParams = prefillUnstructuredParams;
 	$scope.clearPrefilledParams = clearPrefilledParams;
-	$scope.clearPrefilledUnstructuredParams = clearPrefilledUnstructuredParams
+	$scope.clearPrefilledUnstructuredParams = clearPrefilledUnstructuredParams;
+	$scope.selectedIncludeListOfBoxes = false;
+    $scope.selectedIncludeNisCode = false;
+    $scope.selectedIncludeBusinessName = false;
+    $scope.selectIncludeBusinessNameWithBoxes = false;
 	var environmentFunction;
 	setToAc();
 	prefillParams();
@@ -46,7 +54,7 @@ angular.module('autocompleteDemoPageExtern').controller('TestAddressesController
         $scope.selectedLevel = lvl;
     }
 	function getUrlBundle ()  {
-		return Urls;	
+		return Urls;
 	}
 	function getApiKeyBundle() {
 		return apiKeys;
@@ -80,19 +88,19 @@ angular.module('autocompleteDemoPageExtern').controller('TestAddressesController
 		$scope.addressparams.houseNumber=$scope.houseNumber;
 		$scope.addressparams.boxNumber=$scope.boxNumber;
 		$scope.addressparams.postalCode=$scope.postalCode;
-		$scope.addressparams.municipalityName=$scope.municipalityName;	
-		$scope.addressparams.unstructuredAddress="";	
-		$scope.addressparams.state = !$scope.addressparams.state;			
-	}	
+		$scope.addressparams.municipalityName=$scope.municipalityName;
+		$scope.addressparams.unstructuredAddress="";
+		$scope.addressparams.state = !$scope.addressparams.state;
+	}
 	function prefillUnstructuredParams(){
 		$scope.addressparams.streetName="";
 		$scope.addressparams.houseNumber="";
 		$scope.addressparams.boxNumber="";
 		$scope.addressparams.postalCode="";
-		$scope.addressparams.municipalityName="";	
-		$scope.addressparams.unstructuredAddress=$scope.unstructuredAddress;	
+		$scope.addressparams.municipalityName="";
+		$scope.addressparams.unstructuredAddress=$scope.unstructuredAddress;
 		$scope.addressparams.state = !$scope.addressparams.state;
-	}	
+	}
 	function clearPrefilledParams(){
 		$scope.streetName = "";
 		$scope.houseNumber = "";
@@ -103,4 +111,58 @@ angular.module('autocompleteDemoPageExtern').controller('TestAddressesController
 	function clearPrefilledUnstructuredParams(){
 		$scope.unstructuredAddress = "";
 	}
+
+	function includeListOfBoxes(includeListOfBoxes) {
+        $scope.selectedIncludeListOfBoxes = includeListOfBoxes;
+        let tempUrl = removeURLParameter($scope.aacUrl, 'IncludeListOfBoxes')
+        $scope.aacUrl = tempUrl + getIncludeListOfBoxesQueryParam() + includeListOfBoxes;
+    }
+    function includeNisCode(includeNisCode){
+        $scope.selectedIncludeNisCode = includeNisCode;
+        let tempUrl = removeURLParameter($scope.aacUrl, 'includeNisCode')
+        $scope.aacUrl = tempUrl + getIncludeNisCodeQueryParam() + includeNisCode;
+    }
+
+    function includeBusinessName(includeBusinessName){
+        $scope.selectedIncludeBusinessName = includeBusinessName;
+        let tempUrl = removeURLParameter($scope.aacUrl, 'includeBusinessName')
+        $scope.aacUrl = tempUrl + getIncludeBusinessNameQueryParam() + includeBusinessName;
+    }
+
+    function includeBusinessNameWithBoxes(includeBusinessNameWithBoxes){
+        $scope.selectIncludeBusinessNameWithBoxes = includeBusinessNameWithBoxes;
+        let tempUrl = removeURLParameter($scope.aacUrl, 'includeListOfBusinessNamesWithBoxes')
+        $scope.aacUrl = tempUrl + getIncludeBusinessNameWithBoxes() + includeBusinessNameWithBoxes;
+    }
+
+    function getIncludeListOfBoxesQueryParam() {
+    	return ($scope.isInternal) ? "&IncludeListOfBoxes=" : "?IncludeListOfBoxes=";
+    }
+    function getIncludeNisCodeQueryParam() {
+        return ($scope.includeNisCode) ? "&includeNisCode=" : "?includeNisCode=";
+    }
+
+    function getIncludeBusinessNameQueryParam() {
+        return ($scope.includeBusinessName) ? "&includeBusinessName=" : "?includeBusinessName=";
+    }
+
+    function getIncludeBusinessNameWithBoxes() {
+         return ($scope.includeBusinessName) ? "&includeListOfBusinessNamesWithBoxes=" : "?includeListOfBusinessNamesWithBoxes=";
+    }
+
+    function removeURLParameter(url, parameter) {
+         var urlparts = url.split('?');
+         if (urlparts.length >= 2) {
+              var prefix = encodeURIComponent(parameter) + '=';
+              var pars = urlparts[1].split(/[&;]/g);
+              for (var i = pars.length; i-- > 0;) {
+                   if (pars[i].lastIndexOf(prefix, 0) !== -1) {
+                        pars.splice(i, 1);
+                   }
+              }
+              return urlparts[0] + (pars.length > 0 ? '?' + pars.join('&') : '');
+         }
+         return url;
+    }
+
 });

@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css"/>
 	<link rel="stylesheet" href="vendor/bp-address-auto-complete/dist/bp-address-auto-complete.css"/>
 	<link rel="stylesheet" href="vendor/bp-address-auto-complete-wrapper/dist/bp-address-auto-complete-wrapper.css"/>
+	<link rel="stylesheet" href="vendor/bootstrap-icons/font/bootstrap-icons.css"/>
 	<!-- endbuild -->
 </head>
 <body ng-controller="TestAddressesController" onload="displayActiveOptions">
@@ -29,176 +30,295 @@
 <!-- endbuild -->
 
 <div class="dropdown" align="right">
-<button class="bpaac-btn btn doc-menu btn-info dropdown-toggle-split btn-sm" type="button" id="helpbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"  style="margin-top:-15px;margin-bottom:-15px;margin-right:15px;padding-top:0px;padding-bottom:0px">Help <span class="glyphicon glyphicon-dashboard"></span>  <span class="caret"></span>
-</button>
-<ul class="dropdown-menu dropdown-menu-right bpaac-help-option help-option" id="helpddm">
-	<li><a href="http://wiki.netpost/display/ABP/bpAddressAutoComplete" id="doc1" target="_blank" >Widget </a></li>
-	<li><a href="http://wiki.netpost/display/ABP/Address+Auto+Complete" id="doc2" target="_blank" >Autocomplete </a></li>
-</ul>
+	<button class="bpaac-btn btn doc-menu btn-info dropdown-toggle-split btn-sm" type="button" id="helpbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"  style="margin-top:-15px;margin-bottom:-15px;margin-right:15px;padding-top:0px;padding-bottom:0px">Help <span class="glyphicon glyphicon-dashboard"></span>  <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu dropdown-menu-right bpaac-help-option help-option" id="helpddm">
+		<li><a href="http://wiki.netpost/display/ABP/bpAddressAutoComplete" id="doc1" target="_blank" >Widget </a></li>
+		<li><a href="http://wiki.netpost/display/ABP/Address+Auto+Complete" id="doc2" target="_blank" >Autocomplete </a></li>
+	</ul>
 </div>
 <div class="container-fluid">
-<div class="row">
-	<div class="col-sm-5">		
-		<div class="panel-group">
-				<div class="panel-body">    
-						<bp-address-auto-complete-wrapper ng-model="selectedAddress" bp-addressparams="{{addressparams}}" url="{{aacUrl}}" min-level="{{selectedLevel}}" api-key="{{apiKey}}">
-							<bp-address-validator url="{{valUrl}}" api-key="{{apiKey}}"></bp-address-validator>
-						</bp-address-auto-complete-wrapper>
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="panel-group">
+				<div class="panel-body">
+					<bp-address-auto-complete-wrapper ng-model="selectedAddress" bp-addressparams="{{addressparams}}" url="{{aacUrl}}" min-level="{{selectedLevel}}" api-key="{{apiKey}}">
+						<bp-address-validator url="{{valUrl}}" api-key="{{apiKey}}"></bp-address-validator>
+					</bp-address-auto-complete-wrapper>
 
-						<br /><br />
-						<div>
+					<br /><br />
+					<div>
 						Selected address: {{selectedAddress.string}} <br />
 						All Attributes:
 						<table><tr ng-repeat="(key, value) in selectedAddress">
 							<td> {{key}} </td> <td> {{ value }} </td>
 						</tr></table></div>
-						<br /><br />
-						<br /><div class="bpaac-btn btn btn-sm btn-primary" ng-click="clearInput()" type="button">Clear input without Focus</div> <div class="bpaac-btn btn btn-sm btn-primary" ng-click="clearInput(true)" type="button">Clear input with Focus</div>
-				</div>
-			</div>
-	</div>
-	<br/>
-	<div class="col-sm-7">	
-
-	  <div class="row" style="margin-top:-5px">
-
-		<div class="col-sm-7">		
-		<div class="panel-group">
-				<div class="panel panel-info"> 			
-					<div class="bpaac-panel-heading panel-heading">
-						<h2 class="bpaac-panel-title panel-title">Validation URLs</h2>
-					</div>
-				    <div class="panel-body">  
-						Address Validation URL:  <input type="text" disabled="disabled" value="{{valUrl}}" size="50"/> <br /><br />
-						Address Auto Complete URL: <input type="text" disabled="disabled" value="{{aacUrl}}" size="50"/><br /><br />
-					</div>		
+					<br /><br />
+					<br /><div class="bpaac-btn btn btn-sm btn-primary" ng-click="clearInput()" type="button">Clear input without Focus</div> <div class="bpaac-btn btn btn-sm btn-primary" ng-click="clearInput(true)" type="button">Clear input with Focus</div>
 				</div>
 			</div>
 		</div>
+		<br/>
+		<div class="col-sm-8">
 
-		<div class="col-sm-5">
-			<div class="panel-group">
-				<div class="panel panel-info"> 			
-					<div class="bpaac-panel-heading panel-heading">
-						<h2 class="bpaac-panel-title panel-title">General Options</h2>
-					</div>
-				    <div class="panel-body" align="center">  
-					    <div class="row">
-				    		 <div class="col-sm-6">
-				    		 	<label for="environmentbtn" align="left" class="bpaac-lb-sm lb-sm">Environment:&nbsp;&nbsp;&nbsp;</label>
-				    		 </div>
-				    		 <div class="col-sm-6">
-								 <div class="dropdown" align="left">
-								  <button class="bpaac-btn btn environment-option btn-primary dropdown-toggle-split  btn-sm" type="button" id="environmentbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-								    Environment
-								    <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
-								  </button>
-								  <ul class="dropdown-menu environment-option"  id="environmentddm">
-								    <li><a href="#" id="env1" ng-click="setToAc()">AC </a></li>
-								    <li><a href="#" id="env2" ng-click="setToSt()">ST </a></li>
-								    <li role="separator" class="divider"></li>
-								    <li><a href="#" id="env3" ng-click="setToPr()">PR </a></li>
-								  </ul>
-								 </div>
-							 </div>
-						</div>				
-						<div class="row">
-							<div class="col-sm-6">
-				    		 	<label for="levelbtn" align="left" class="bpaac-lb-sm  lb-sm">Min. Level:</label>
-				    		</div>
-						    <div class="col-sm-6">		
-								 <div class="dropdown" align="left">
-								  <button class="bpaac-btn btn level-option btn-primary btn-sm" type="button" id="levelbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-								    Min. Level
-								     <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
-								  </button>
-								  <ul class="dropdown-menu level-option" id="levelddm" > 
-								    <li><a href="#" id="level1" ng-click="setLevel(1)">Box Number </a></li>
-								    <li><a href="#" id="level2" ng-click="setLevel(2)">Street Number </a></li>
-								    <li><a href="#" id="level3" ng-click="setLevel(3)">Street </a></li>
-								    <li><a href="#" id="level4" ng-click="setLevel(4)">Municipality </a></li>
-								  </ul>
-							  	 </div>
-							 </div>
+			<div class="row" style="margin-top:-5px">
+
+				<div class="col-sm-6">
+					<div class="panel-group">
+						<div class="panel panel-info">
+							<div class="bpaac-panel-heading panel-heading">
+								<h2 class="bpaac-panel-title panel-title">Validation URLs</h2>
+							</div>
+							<div class="panel-body">
+								Address Validation URL:  <input type="text" disabled="disabled" value="{{valUrl}}" size="45"/> <br /><br />
+								Address Auto Complete URL: <input type="text" disabled="disabled" value="{{aacUrl}}" size="45"/><br /><br />
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
 
-	 </div>
+				<div class="col-sm-6">
+					<div class="panel-group">
+						<div class="panel panel-info">
+							<div class="bpaac-panel-heading panel-heading">
+								<h2 class="bpaac-panel-title panel-title">General Options</h2>
+							</div>
+							<div class="panel-body">
+								<table>
+									<thead>
+									<tr>
+										<th colspan="3" style="border-right: 1px solid #bce8f1;height: 40px;padding-right: 6px !important;">
+											<small>Technical parameters</small>
+										</th>
+										<th colspan="3" style="padding-left: 6px !important;">
+											<small>Projections</small>
+										</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr>
+										<td style="padding-bottom: 10px !important;">
+											<span for="environmentbtn" align="left" class="bpaac-lb-sm lb-sm">Environment:</span>
+										</td>
+										<td style="padding-bottom: 10px !important;">
+											<div class="dropdown" align="left">
+												<button class="bpaac-btn btn environment-option btn-primary dropdown-toggle-split  btn-xs" type="button" id="environmentbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+													Environment
+													<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+												</button>
+												<ul class="dropdown-menu environment-option"  id="environmentddm">
+													<li><a href="#" id="env1" ng-click="setToAc()">AC </a></li>
+													<li><a href="#" id="env2" ng-click="setToSt()">ST </a></li>
+													<li role="separator" class="divider"></li>
+													<li><a href="#" id="env3" ng-click="setToPr()">PR </a></li>
+												</ul>
+											</div>
+										</td>
+										<td  style="border-right: 1px solid #bce8f1;height: 40px;padding-right: 6px !important; padding-bottom: 10px !important;padding-left: 2px !important;">
+											<span><i class="bi bi-info-circle-fill text-primary info-icon" data-toggle="tooltip" data-bs-placement="left" title="Choose your environment"></i></span>
+										</td>
+										<td style="padding-left: 6px !important;padding-bottom: 10px !important;">
+											<span for="includelistofboxesbtn" align="left" class="bpaac-lb-sm lb-sm">Include List Of Boxes:</span>
+										</td>
+										<td style="padding-bottom: 10px !important;">
+											<div class="dropdown" align="left">
+												<button class="bpaac-btn btn box-option btn-primary dropdown-toggle-split btn-xs" type="button" id="includelistofboxesbtn" data-toggle="dropdown" aria-haspopup="true" aria-labelby aria-expanded="true">
+													List Of Boxes
+													<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+												</button>
+												<ul class="dropdown-menu box-option" id="listofboxesddm">
+													<li><a href="#" id="listofboxes" ng-click="includeListOfBoxes(true)">True</a></li>
+													<li><a href="#" id="nolistofboxes" ng-click="includeListOfBoxes(false)">False</a></li>
+												</ul>
+											</div>
+										</td>
+										<td style="padding-bottom: 10px !important; padding-left: 2px !important;">
+											<span><i class="bi bi-info-circle-fill text-primary info-icon" data-toggle="tooltip" data-bs-placement="left" title="Ask Back-End to include the list of Boxes in the response in case of suggestion at streetNumber level."></i></span>
+										</td>
+									</tr>
 
-	 <div class="row" style="margin-top:-12px;margin-bottom:-6px;">
-		<div class="panel-group" style="margin-bottom:-8px;margin-top:-8px;">
-			<div class="panel-body"> 	
-			    <div class="panel panel-default">
-					<div class="bpaac-panel-heading panel-heading">
-						<h3 class="bpaac-panel-title panel-title">
-						  <a data-toggle="collapse" href="#collapse1" onclick="refreshCaret()" id="collapsibleAddrPanel" class="up">Prefilled Parameters <span class="caret"></span></a> 
-						</h3>
-					</div>
+									<tr>
+										<td>
+											<span for="levelbtn" align="left" class="bpaac-lb-sm  lb-sm">Min. Level:</span>
+										</td>
+										<td>
+											<div class="dropdown" align="left">
+												<button class="bpaac-btn btn level-option btn-primary btn-xs" type="button" id="levelbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+													Min. Level
+													<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+												</button>
+												<ul class="dropdown-menu level-option" id="levelddm" >
+													<li><a href="#" id="level1" ng-click="setLevel(1)">Box Number </a></li>
+													<li><a href="#" id="level2" ng-click="setLevel(2)">Street Number </a></li>
+													<li><a href="#" id="level3" ng-click="setLevel(3)">Street </a></li>
+													<li><a href="#" id="level4" ng-click="setLevel(4)">Municipality </a></li>
+												</ul>
+											</div>
+										</td>
+										<td  style="border-right: 1px solid #bce8f1;height: 40px;padding-right: 6px !important; padding-left: 2px !important;">
+									    <span><i class="bi bi-info-circle-fill text-primary info-icon" data-toggle="tooltip" data-bs-placement="left" title="Allow the widget to validate an address until a minimum level:
 
-				    <div id="collapse1" class="panel-collapse collapse" style="border-style:ridge;border-width:thin">
-				        <div class="panel-body">
-				        <div class="container-fluid">
-				        	       	
-				        	<div class="panel-group">    
-					        	<div class="panel panel-info"> 			
-									<div class="bpaac-panel-heading panel-heading"><h4 class="bpaac-panel-title panel-title">Unstructured Address</h4></div>
-									 <div class="panel-body">   
-										<div class="row">
-										  	<div class="col-md-12">	 			        		    	
-											   <input type="text" class="bpaac-form-control  form-control input-sm" name="unstructuredAddress" id="unstructuredAddress" ng-model="unstructuredAddress" placeholder="Unstructured Address"/>
-							 				</div>
-										</div>
-										<div class="row">   
-											<div class="col-md-2 bpaac-btn btn btn-sm btn-primary" id="btnPrefillUnstructuredParams" ng-click="prefillUnstructuredParams()"> Send </div>
-											<div class="col-md-2 bpaac-btn btn btn-sm btn-warning" ng-click="clearPrefilledUnstructuredParams()"> Clear </div>
-											<div class="col-md-8"></div>
-										</div>
-									 </div>
-								 </div>
-							 </div>			        
-				 		
-							 
-							<div class="panel-group" style="margin-bottom:-8px;margin-top:-8px"">  
-					        	<div class="panel panel-info"> 			
-									<div class="bpaac-panel-heading panel-heading"><h4 class="bpaac-panel-title panel-title">Structured Address</h4></div>
-									<div class="panel-body" > 
-										<div class="row">
-											<div class="col-md-6">	 	
-										    	 <input type="text" class="bpaac-form-control form-control input-sm" name="streetName" id="streetName" ng-model="streetName" placeholder="Street Name" />
-										    </div>	
-										     <div class="col-md-3">
-										     	<input type="text" class="bpaac-form-control form-control input-sm" name="houseNumber" id="houseNumber" ng-model="houseNumber" placeholder="House Number" /> 
-										     </div>
-										     <div class="col-md-3">
-											 	<input type="text" class="bpaac-form-control form-control input-sm" name="boxNumber" id="boxNumber" ng-model="boxNumber" placeholder="Box Number" />
-											 </div>
-										</div> 			
-										<div class="row">   
-											<div class="col-md-3">
-											     <input type="text" class="bpaac-form-control form-control input-sm" name="postalCode" id="postalCode" ng-model="postalCode" placeholder="Postal code"/>    
-											</div>	
-											<div class="col-md-9">	 	
-											     <input type="text" class="bpaac-form-control form-control input-sm" name="municipalityName" id="municipalityName" ng-model="municipalityName" placeholder="Municipality"> 
-											</div>	
-										</div>
-										<div class="row">   
-											<div class="col-md-2 bpaac-btn btn btn-sm btn-primary" id="btnPrefillParams" ng-click="prefillParams()"> Send</div>
-											<div class="col-md-2 bpaac-btn btn btn-sm btn-warning" ng-click="clearPrefilledParams()">Clear</div>
-											<div class="col-md-8"></div>
-										</div>
-								   </div>
-								</div>			
-							</div>			 
+1 - Box Number (Suffix level).
+An address is considered complete when the suggestion contains a mailbox or is a physical point without box.
+
+2 - Street Number (Physical Point level) (Default).
+An address is considered complete when either the address is marked as complete by the service, or the address contains a house number, streetname, postal code and municipality.
+
+3 - Street level.
+An address is considered sufficiently complete when either the address is marked as complete by the services or the address contains at least a streetname, postal code and municipality.
+
+4 - Postal Code / Municipality level.
+An address is considered sufficiently complete when either the address is marked as complete by the services or the address contains at least a postal code and municipality.
+Note: this means all suggestions in the suggestion window will be accepted as sufficiently complete addresses, as each suggestion contains at least the postal code and municipality."></i></span>
+										</td>
+										<td style="padding-left:6px !important;padding-bottom: 10px !important;">
+											<span for="includeniscodebtn" align="left" class="bpaac-lb-sm lb-sm">Include Nis Code:</span>
+										</td>
+										<td style="padding-bottom: 10px !important;">
+											<div class="dropdown" align="left">
+												<button class="bpaac-btn btn niscode-option btn-primary dropdown-toggle-split btn-xs" type="button" id="includeniscodebtn" data-toggle="dropdown" aria-haspopup="true" aria-labelby aria-expanded="true" aria-checked="true">
+													Nis Code
+													<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+												</button>
+												<ul class="dropdown-menu niscode-option" id="niscodeddm">
+													<li><a href="#" id="niscode" ng-click="includeNisCode(true)">True</a></li>
+													<li><a href="#" id="noniscode" ng-click="includeNisCode(false)">False</a></li>
+												</ul>
+											</div>
+										</td>
+										<td style="padding-bottom: 10px !important;padding-left: 2px !important;">
+											<span><i class="bi bi-info-circle-fill text-primary info-icon" data-toggle="tooltip" data-bs-placement="left" title="Ask Back-End to include the Nis Code in the response. Availability of NIS Code is +-99,95%."></i></span>
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td  style="border-right: 1px solid #bce8f1;height: 40px;padding-right: 6px !important; padding-left: 2px !important;">
+										</td>
+										<td style="padding-left: 6px !important;padding-bottom: 10px !important;">
+											<span for="includebusinessnamebtn" align="left" class="bpaac-lb-sm lb-sm">Include Business Name:</span>
+										</td>
+										<td style="padding-bottom: 10px !important;">
+											<div class="dropdown" align="left">
+												<button class="bpaac-btn btn businessname-option btn-primary dropdown-toggle-split btn-xs" type="button" id="includebusinessnamebtn" data-toggle="dropdown" aria-haspopup="true" aria-labelby aria-expanded="true" aria-checked="true">
+													Business Name
+													<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+												</button>
+												<ul class="dropdown-menu businessname-option" id="businessnameddm">
+													<li><a href="#" id="businessname" ng-click="includeBusinessName(true)">True</a></li>
+													<li><a href="#" id="nobusinessname" ng-click="includeBusinessName(false)">False</a></li>
+												</ul>
+											</div>
+										</td>
+										<td style="padding-bottom: 10px !important;padding-left: 2px !important;">
+											<span><i class="bi bi-info-circle-fill text-primary info-icon" data-toggle="tooltip" data-bs-placement="left" title="Ask Back-End to include the Business Name in the response, and show it in the list of suggestions."></i></span>
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td  style="border-right: 1px solid #bce8f1;height: 40px;padding-right: 6px !important;">
+										</td>
+										<td style="padding-left: 6px !important">
+											<span for="includebusinessnamewithboxesbtn" align="left" class="bpaac-lb-sm lb-sm">Include List of Business Names With Boxes:</span>
+										</td>
+										<td>
+											<div class="dropdown" align="left">
+												<button class="bpaac-btn btn businessnamewithboxes-option btn-primary dropdown-toggle-split btn-xs" type="button" id="includebusinessnamewithboxesbtn" data-toggle="dropdown" aria-haspopup="true" aria-labelby aria-expanded="true" aria-checked="true">
+													Business Name with boxes
+													<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+												</button>
+												<ul class="dropdown-menu businessnamewithboxes-option" id="businessnamewithboxesddm">
+													<li><a href="#" id="businessnamewithbox" ng-click="includeBusinessNameWithBoxes(true)">True</a></li>
+													<li><a href="#" id="nobusinessnamewithbox" ng-click="includeBusinessNameWithBoxes(false)">False</a></li>
+												</ul>
+											</div>
+										</td>
+										<td style="padding-left: 2px !important;">
+											<span><i class="bi bi-info-circle-fill text-primary info-icon" data-toggle="tooltip" data-bs-placement="left" title="Ask Back-End to include Business Names in the response, together within the list Of Boxes. When this option is set to true, by default includeBusinessName & includeListOfBoxes are considered as true."></i></span>
+										</td>
+									</tr>
+									</tbody>
+								</table>
+
+							</div>
 						</div>
-				        </div>
-				        <div class="panel-footer" style="padding: 6px 15px"></div>
-				    </div>
+					</div>
 				</div>
-		  	</div>	
-		</div>
+
+			</div>
+
+			<div class="row" style="margin-top:-12px;margin-bottom:-6px;">
+				<div class="panel-group" style="margin-bottom:-8px;margin-top:-8px;">
+					<div class="panel-body col-sm-10" style="float: right;">
+						<div class="panel panel-default">
+							<div class="bpaac-panel-heading panel-heading">
+								<h3 class="bpaac-panel-title panel-title">
+									<a data-toggle="collapse" href="#collapse1" onclick="refreshCaret()" id="collapsibleAddrPanel" class="up">Prefilled Parameters <span class="caret"></span></a>
+								</h3>
+							</div>
+
+							<div id="collapse1" class="panel-collapse collapse" style="border-style:ridge;border-width:thin">
+								<div class="panel-body">
+									<div class="container-fluid">
+
+										<div class="panel-group">
+											<div class="panel panel-info">
+												<div class="bpaac-panel-heading panel-heading"><h4 class="bpaac-panel-title panel-title">Unstructured Address</h4></div>
+												<div class="panel-body">
+													<div class="row">
+														<div class="col-md-12">
+															<input type="text" class="bpaac-form-control  form-control input-sm" name="unstructuredAddress" id="unstructuredAddress" ng-model="unstructuredAddress" placeholder="Unstructured Address"/>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-2 bpaac-btn btn btn-sm btn-primary" id="btnPrefillUnstructuredParams" ng-click="prefillUnstructuredParams()"> Send </div>
+														<div class="col-md-2 bpaac-btn btn btn-sm btn-warning" ng-click="clearPrefilledUnstructuredParams()"> Clear </div>
+														<div class="col-md-8"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+										<div class="panel-group" style="margin-bottom:-8px;margin-top:-8px">
+											<div class="panel panel-info">
+												<div class="bpaac-panel-heading panel-heading"><h4 class="bpaac-panel-title panel-title">Structured Address</h4></div>
+												<div class="panel-body" >
+													<div class="row">
+														<div class="col-md-6">
+															<input type="text" class="bpaac-form-control form-control input-sm" name="streetName" id="streetName" ng-model="streetName" placeholder="Street Name" />
+														</div>
+														<div class="col-md-3">
+															<input type="text" class="bpaac-form-control form-control input-sm" name="houseNumber" id="houseNumber" ng-model="houseNumber" placeholder="House Number" />
+														</div>
+														<div class="col-md-3">
+															<input type="text" class="bpaac-form-control form-control input-sm" name="boxNumber" id="boxNumber" ng-model="boxNumber" placeholder="Box Number" />
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-3">
+															<input type="text" class="bpaac-form-control form-control input-sm" name="postalCode" id="postalCode" ng-model="postalCode" placeholder="Postal code"/>
+														</div>
+														<div class="col-md-9">
+															<input type="text" class="bpaac-form-control form-control input-sm" name="municipalityName" id="municipalityName" ng-model="municipalityName" placeholder="Municipality">
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-md-2 bpaac-btn btn btn-sm btn-primary" id="btnPrefillParams" ng-click="prefillParams()"> Send</div>
+														<div class="col-md-2 bpaac-btn btn btn-sm btn-warning" ng-click="clearPrefilledParams()">Clear</div>
+														<div class="col-md-8"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel-footer" style="padding: 6px 15px"></div>
+							</div>
+						</div>
+					</div>
+				</div>
 
 	 </div>
 
@@ -209,7 +329,7 @@
 
 
 
-	   <script type="text/javascript">	   		
+	   <script type="text/javascript">
 
 			$(function(){
 			    $(".dropdown-menu.environment-option li a").click(function(){
@@ -221,34 +341,58 @@
 			      $(".btn.level-option:first-child").text($(this).text());
 			      $(".btn.level-option:first-child").val($(this).text());
 			      $(".btn.level-option").append('<span class="caret"></span>').append('<span class="sr-only">Toggle Dropdown</span>');
-			   });	
+			   });
+			   $(".dropdown-menu.box-option li a").click(function(){
+			      $(".btn.box-option:first-child").text($(this).text());
+			      $(".btn.box-option:first-child").val($(this).text());
+			      $(".btn.box-option").append('<span class="caret"></span>').append('<span class="sr-only">Toggle Dropdown</span>');
+			   });
+			   $(".dropdown-menu.niscode-option li a").click(function(){
+			      $(".btn.niscode-option:first-child").text($(this).text());
+			      $(".btn.niscode-option:first-child").val($(this).text());
+			      $(".btn.niscode-option").append('<span class="caret"></span>').append('<span class="sr-only">Toggle Dropdown</span>');
+			   });
+			   $(".dropdown-menu.businessname-option li a").click(function(){
+			      $(".btn.businessname-option:first-child").text($(this).text());
+			      $(".btn.businessname-option:first-child").val($(this).text());
+			      $(".btn.businessname-option").append('<span class="caret"></span>').append('<span class="sr-only">Toggle Dropdown</span>');
+			   });
+			   $(".dropdown-menu.businessnamewithboxes-option li a").click(function(){
+			      $(".btn.businessnamewithboxes-option:first-child").text($(this).text());
+			      $(".btn.businessnamewithboxes-option:first-child").val($(this).text());
+			      $(".btn.businessnamewithboxes-option").append('<span class="caret"></span>').append('<span class="sr-only">Toggle Dropdown</span>');
+			   });
 			});
 
 			window.onload=displayActiveOptions;
 	   		function displayActiveOptions(e){
 			    $('#env1').click();
 			    $('#level2').click();
+				$('#nolistofboxes').click();
+				$('#noniscode').click();
+				$('#nobusinessname').click();
+				$('#nobusinessnamewithbox').click();
 	   		}
 	   		$("#unstructuredAddress").keyup(function(event){
 			    if(event.keyCode == 13){
 			        $("#btnPrefillUnstructuredParams").click();
 			    }
-			});		
+			});
 			$("#streetName").keyup(function(event){
 			    if(event.keyCode == 13){
 			        $("#btnPrefillParams").click();
 			    }
-			});	
+			});
 			$("#houseNumber").keyup(function(event){
 			    if(event.keyCode == 13){
 			        $("#btnPrefillParams").click();
 			    }
-			});	
+			});
 			$("#boxNumber").keyup(function(event){
 			    if(event.keyCode == 13){
 			        $("#btnPrefillParams").click();
 			    }
-			});	
+			});
 			$("#postalCode").keyup(function(event){
 			    if(event.keyCode == 13){
 			        $("#btnPrefillParams").click();

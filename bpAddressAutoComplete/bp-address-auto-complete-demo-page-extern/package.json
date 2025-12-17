@@ -1,6 +1,6 @@
 {
   "name": "bp-address-auto-complete-demo-external",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "devDependencies": {
     "grunt": "^0.4.1",
     "grunt-angular-templates": "^0.5.7",
